@@ -1,14 +1,22 @@
 # Media notes
 
+The current release is **AnimateCanvas**. The September 13 branding update
+renames the opening, burned-in captions, three English voice takes, README cover,
+and editing-preview labels. The accepted V56 motion, camera, scene timing,
+anatomical keyframe cues, post-dunk support corrections, and music are retained.
+Other voice takes are reused; benchmark case choices, motion data, frame counts,
+and playback rates are unchanged. Legacy viewer method keys are retained for
+working links to the original experiment viewers.
+
 The narrated film is the September 2026 editorial update: the current paper title,
 Figure 2 and terminology replace the earlier introduction and narration. The V56 complete film also incorporates anatomical pose-cue skeletons, corrected
-vault-rail heights, and post-dunk planted-foot support. It retains the authored
-camera, timing, trajectory-completion effects, narration and music. The six
+vault-rail heights, and post-dunk planted-foot support. The current branding edition retains the authored
+camera, timing, trajectory-completion effects and music, with three renamed voice takes. The six
 character clips are excerpts from this updated full demonstration.
 The website does not present these edited presentation clips as raw benchmark
 measurements.
 
-The benchmark gallery contains 24 persisted MotionCanvas inference cases from
+The benchmark gallery contains 24 persisted AnimateCanvas inference cases from
 Motius, with four examples in each of six benchmark collections: temporal control,
 body-part control, BABEL sequential generation, instruction editing, style–content
 editing, and text-to-motion. The style–content collection includes two style and

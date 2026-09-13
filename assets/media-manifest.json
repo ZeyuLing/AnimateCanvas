@@ -1,11 +1,11 @@
 {
-  "version": "V56 complete",
-  "master_sha256": "d85bcc931274d67100f04db08e3c1dd5003a3516b0336aab988f5fcbeb767000",
+  "version": "AnimateCanvas — September 13 branding update",
+  "master_sha256": "e3620c0bee1c58c117c5518e15632288230506972f4fa42fff959d381ad6574a",
   "master_duration_seconds": 158.03333333333333,
   "web_video": {
-    "path": "assets/media/motioncanvas-v56-complete-1080p.mp4",
-    "bytes": 67457221,
-    "sha256": "210578cba32dfcca0f107e72af9aed92ac20382b0c1e7d444c65c508d2b0c8a9"
+    "path": "assets/media/animatecanvas-demo-1080p.mp4",
+    "bytes": 67579779,
+    "sha256": "33c96fb6313f77cee493d09c441406affa7a98c8298ddc652239374be3437a90"
   },
   "showcase_source": "Approved narrated demonstration; clips are presentation excerpts, not benchmark measurements.",
   "clips": [
@@ -22,10 +22,10 @@
       "id": "footsteps",
       "start_seconds": 49,
       "duration_seconds": 10,
-      "path": "assets/showcase/footsteps-v56.mp4",
+      "path": "assets/showcase/footsteps-animatecanvas.mp4",
       "poster": "assets/showcase/footsteps-v56.webp",
-      "sha256": "58d58f5e51d269aa1dcfaa3275ce6892d2ad4b2fe6336667471afcab1e0fdc8d",
-      "bytes": 2377917
+      "sha256": "1230a939193fd7290a6ae3386745c8cf63169763f30ace9e8e6f0bbf2209753d",
+      "bytes": 2381913
     },
     {
       "id": "jump",
@@ -58,10 +58,10 @@
       "id": "basketball",
       "start_seconds": 144.8,
       "duration_seconds": 7,
-      "path": "assets/showcase/basketball-v56.mp4",
+      "path": "assets/showcase/basketball-animatecanvas.mp4",
       "poster": "assets/showcase/basketball-v56.webp",
-      "sha256": "e09b0640726dff27145e34cc21c37516132eb585e41deb6af0f45f09cfd8c50d",
-      "bytes": 2109259
+      "sha256": "fbb7b14352d79ea690115e1d674a403bb31cf004d669e9238cf81867b94dc19e",
+      "bytes": 2103435
     }
   ],
   "benchmarks": [
@@ -89,7 +89,7 @@
       "source_url": "https://zeyuling-temporal-condition-leaderboard.static.hf.space/cases/start_1f/index.html?method=ours&case=014457",
       "source_method_key": "ours",
       "panels": [
-        "MotionCanvas"
+        "AnimateCanvas"
       ],
       "fps": 30,
       "frames": 94,
@@ -153,7 +153,7 @@
       "source_url": "https://zeyuling-body-part-condition-humanml3d-leaderboard.static.hf.space/cases/index.html?method=motioncanvas&case=001014",
       "source_method_key": "motioncanvas",
       "panels": [
-        "MotionCanvas"
+        "AnimateCanvas"
       ],
       "fps": 20,
       "frames": 121,
@@ -198,7 +198,7 @@
       "source_url": "https://zeyuling-babel-sequential-generation-leaderboard.static.hf.space/cases/index.html?method=motioncanvas&case=val_6604",
       "source_method_key": "motioncanvas",
       "panels": [
-        "MotionCanvas"
+        "AnimateCanvas"
       ],
       "fps": 30,
       "frames": 158,
@@ -232,7 +232,7 @@
       },
       "panels": [
         "Input motion",
-        "MotionCanvas"
+        "AnimateCanvas"
       ],
       "fps": 30,
       "frames": 120,
@@ -240,10 +240,15 @@
       "width": 768,
       "height": 480,
       "path": "assets/benchmarks/instruction.mp4",
-      "bytes": 341935,
-      "sha256": "43a77c0335f3a8806ba471d3f1632982344405b38288edec9e1e1fa158856e08",
+      "bytes": 341304,
+      "sha256": "8d866b744821f9be00e02203d1f80804631abdb0657e5ae2b5fea6af8beaaa36",
       "rendering": "Captured from Motius benchmark SMPL decoding; original motion samples and frame rate preserved. Camera, materials and framing standardized for presentation; mesh culling disabled in editing viewers to keep moving figures visible.",
-      "group": "instruction"
+      "group": "instruction",
+      "display_labels": [
+        "Input motion",
+        "AnimateCanvas"
+      ],
+      "display_label_updated": "2026-09-13"
     },
     {
       "id": "style",
@@ -269,7 +274,7 @@
       },
       "panels": [
         "Input motion",
-        "MotionCanvas"
+        "AnimateCanvas"
       ],
       "fps": 30,
       "frames": 76,
@@ -277,10 +282,15 @@
       "width": 768,
       "height": 480,
       "path": "assets/benchmarks/style.mp4",
-      "bytes": 279215,
-      "sha256": "e55117a0de9da33b677cd0d25a00581509c84d5efd28f43ab7d55a15e1d819f0",
+      "bytes": 280122,
+      "sha256": "19852c4b34cd35ab8b4c69d5febafac71a7d845b63b73425bce9a124e9445bdc",
       "rendering": "Captured from Motius benchmark SMPL decoding; original motion samples and frame rate preserved. Camera, materials and framing standardized for presentation; mesh culling disabled in editing viewers to keep moving figures visible.",
-      "group": "editing"
+      "group": "editing",
+      "display_labels": [
+        "Input motion",
+        "AnimateCanvas"
+      ],
+      "display_label_updated": "2026-09-13"
     },
     {
       "id": "text-to-motion",
@@ -302,7 +312,7 @@
       "source_url": "https://zeyuling-t2m-humanml3d-leaderboard.static.hf.space/cases/index.html?method=motioncanvas&case=004822",
       "source_method_key": "motioncanvas",
       "panels": [
-        "MotionCanvas"
+        "AnimateCanvas"
       ],
       "fps": 30,
       "frames": 300,
@@ -363,7 +373,7 @@
       "source_url": "https://zeyuling-temporal-condition-leaderboard.static.hf.space/cases/adaptive_keyframes/index.html?method=ours&case=003424",
       "source_method_key": "ours",
       "panels": [
-        "MotionCanvas"
+        "AnimateCanvas"
       ],
       "fps": 30,
       "frames": 142,
@@ -439,7 +449,7 @@
       "source_url": "https://zeyuling-body-part-condition-humanml3d-leaderboard.static.hf.space/cases/index.html?method=motioncanvas&case=007995",
       "source_method_key": "motioncanvas",
       "panels": [
-        "MotionCanvas"
+        "AnimateCanvas"
       ],
       "fps": 20,
       "frames": 187,
@@ -484,7 +494,7 @@
       "source_url": "https://zeyuling-babel-sequential-generation-leaderboard.static.hf.space/cases/index.html?method=motioncanvas&case=val_7982",
       "source_method_key": "motioncanvas",
       "panels": [
-        "MotionCanvas"
+        "AnimateCanvas"
       ],
       "fps": 30,
       "frames": 196,
@@ -520,9 +530,14 @@
       "width": 768,
       "height": 480,
       "path": "assets/benchmarks/instruction-0.mp4",
-      "bytes": 357769,
-      "sha256": "f1989b618ab59af4d56b798f28ff5a0b545e3fad3990f86d38908d0dfaa09786",
-      "motion_postprocessed": false
+      "bytes": 356527,
+      "sha256": "82c5d86cf225bb56778a5fac5b9b733ef691b56b8e456860e95edc0b823a7910",
+      "motion_postprocessed": false,
+      "display_labels": [
+        "Input motion",
+        "AnimateCanvas"
+      ],
+      "display_label_updated": "2026-09-13"
     },
     {
       "id": "content",
@@ -548,7 +563,7 @@
       },
       "panels": [
         "Input motion",
-        "MotionCanvas"
+        "AnimateCanvas"
       ],
       "fps": 30,
       "frames": 106,
@@ -556,10 +571,15 @@
       "width": 768,
       "height": 480,
       "path": "assets/benchmarks/content.mp4",
-      "bytes": 303260,
-      "sha256": "adac8ce77bf984e635eba6d9854f90b47ea91e59b0b963d7723d4ac4396ca8ec",
+      "bytes": 303337,
+      "sha256": "bb461e15d4491cbbed753877d789ede5dd2355b32a9d023b8e3fa08807c1a13e",
       "rendering": "Captured from Motius benchmark SMPL decoding; original motion samples and frame rate preserved. Camera, materials and framing standardized for presentation; mesh culling disabled in editing viewers to keep moving figures visible.",
-      "group": "editing"
+      "group": "editing",
+      "display_labels": [
+        "Input motion",
+        "AnimateCanvas"
+      ],
+      "display_label_updated": "2026-09-13"
     },
     {
       "id": "text-014477",
@@ -620,7 +640,7 @@
       "source_url": "https://zeyuling-temporal-condition-leaderboard.static.hf.space/cases/both_1f/index.html?method=ours&case=008463",
       "source_method_key": "ours",
       "panels": [
-        "MotionCanvas"
+        "AnimateCanvas"
       ],
       "fps": 30,
       "frames": 201,
@@ -769,9 +789,14 @@
       "width": 768,
       "height": 480,
       "path": "assets/benchmarks/instruction-10.mp4",
-      "bytes": 314577,
-      "sha256": "8956c1c00103fabead1a370881a0a6577adb609f48916cd557c4c9da24a598e1",
-      "motion_postprocessed": false
+      "bytes": 314393,
+      "sha256": "140446a48377a291ec944bcd336ddbe3e54f92568e32da5930a75e3aaa2ae8b2",
+      "motion_postprocessed": false,
+      "display_labels": [
+        "Input motion",
+        "AnimateCanvas"
+      ],
+      "display_label_updated": "2026-09-13"
     },
     {
       "id": "style-11",
@@ -799,9 +824,14 @@
       "width": 768,
       "height": 480,
       "path": "assets/benchmarks/style-11.mp4",
-      "bytes": 237511,
-      "sha256": "9bf6ee87af8f8ecd3624da5b203714bc24ef99db4347f1f59ff539f1b25b2ce7",
-      "motion_postprocessed": false
+      "bytes": 237015,
+      "sha256": "243b493a174ee859e7ad00f4f0ffb7c1b765d3b17e2cbea8f74af9a4a7467cd6",
+      "motion_postprocessed": false,
+      "display_labels": [
+        "Input motion",
+        "AnimateCanvas"
+      ],
+      "display_label_updated": "2026-09-13"
     },
     {
       "id": "text-007995",
@@ -858,7 +888,7 @@
       "source_url": "https://zeyuling-temporal-condition-leaderboard.static.hf.space/cases/pre20_uncond/index.html?method=ours&case=009613",
       "source_method_key": "ours",
       "panels": [
-        "MotionCanvas"
+        "AnimateCanvas"
       ],
       "fps": 30,
       "frames": 97,
@@ -1003,9 +1033,14 @@
       "width": 768,
       "height": 480,
       "path": "assets/benchmarks/instruction-14.mp4",
-      "bytes": 305279,
-      "sha256": "f2261bde6047cf3e3e6921e514f4f334056d524fbda6f4301678d7aab0d6d104",
-      "motion_postprocessed": false
+      "bytes": 305487,
+      "sha256": "70c1932a400ba9a53ad7767dd01b17f91f5bbafd4b288e268b35348f09b4c567",
+      "motion_postprocessed": false,
+      "display_labels": [
+        "Input motion",
+        "AnimateCanvas"
+      ],
+      "display_label_updated": "2026-09-13"
     },
     {
       "id": "content-0",
@@ -1033,9 +1068,14 @@
       "width": 768,
       "height": 480,
       "path": "assets/benchmarks/content-0.mp4",
-      "bytes": 285029,
-      "sha256": "515dee1564cf78029b68502420b4943df1b84160eb20ba62c2f67858bc7c0c50",
-      "motion_postprocessed": false
+      "bytes": 283818,
+      "sha256": "b0005f952bdbdab0e79ef75d21f10c6cebb0df16e44b0747f3ea6d944ba1dd14",
+      "motion_postprocessed": false,
+      "display_labels": [
+        "Input motion",
+        "AnimateCanvas"
+      ],
+      "display_label_updated": "2026-09-13"
     },
     {
       "id": "text-010940",
@@ -1069,9 +1109,9 @@
       "motion_postprocessed": false
     }
   ],
-  "paper_figure_sha256": "3def3f5c5b202b7a02f12174c51009cd71f102f8f53be421604b47a72f92a018",
+  "paper_figure_sha256": "0600ccc94d455e3bca6e1bbd741616f678ada053fedff6bd96ab5c6e7cfd7019",
   "readme": {
-    "cover": "assets/readme/cover.png",
+    "cover": "assets/readme/animatecanvas-cover.png",
     "source": "Editorial cover retained from the approved V52 picture-only design; six character stills updated from V56 picture-only frames without narration subtitles.",
     "character_previews": [
       "assets/showcase/route-v56.webp",
@@ -1098,11 +1138,11 @@
   },
   "paper_figure": {
     "paper_commit": "95c4fb06783cb98e3547f592b468be91485c3d13",
-    "path": "assets/figures/motioncanvas-pipeline-95c4fb06.png",
+    "path": "assets/figures/animatecanvas-pipeline.png",
     "sha256": "0600ccc94d455e3bca6e1bbd741616f678ada053fedff6bd96ab5c6e7cfd7019"
   },
   "editorial_update": {
-    "title": "MotionCanvas: Learning Implicit Motion Planning from Composable Kinematic Cues",
+    "title": "AnimateCanvas: Learning Implicit Motion Planning from Composable Kinematic Cues",
     "paper_revision": "95c4fb06783cb98e3547f592b468be91485c3d13",
     "narration_updated": true,
     "motion_source": "V56 integrated presentation frames",
@@ -1118,8 +1158,31 @@
       1440
     ],
     "render_samples": 256,
-    "unchanged_editorial": "V54 title, method cards, narration, captions and music",
+    "unchanged_editorial": "V56 motion and camera; method cards, timing, and music retained; title, captions, and three voice takes renamed",
     "source_camera_and_timing_preserved": true,
     "note": "Scene-level presentation corrections; benchmark inference motions are unchanged."
+  },
+  "branding_update": {
+    "date": "2026-09-13",
+    "name": "AnimateCanvas",
+    "repository": "https://github.com/ZeyuLing/AnimateCanvas",
+    "project_page": "https://zeyuling.github.io/AnimateCanvas/",
+    "source_motion_changed": false,
+    "benchmark_internal_identifiers_preserved": true,
+    "narration_utterances_renamed": [
+      "n04_canvas",
+      "n07_steps",
+      "n16_dunk_target"
+    ],
+    "editing_previews_renamed": [
+      "instruction",
+      "style",
+      "instruction-0",
+      "content",
+      "instruction-10",
+      "style-11",
+      "instruction-14",
+      "content-0"
+    ]
   }
 }
