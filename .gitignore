@@ -8,7 +8,5 @@ __pycache__/
 .venv/
 dist/
 build/
-# Superseded local draft media, retained locally but not published.
-assets/results/
-assets/media/motioncanvas-full-demo-1080p.mp4
-assets/figures/motioncanvas-teaser.png
+# Website assets belong to gh-pages, not the inference branch.
+assets/

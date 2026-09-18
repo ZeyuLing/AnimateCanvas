@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://zeyuling.github.io/AnimateCanvas/#demo"><img src="assets/cover.png" width="100%" alt="AnimateCanvas: compose kinematic cues, generate coherent full-body motion"></a>
+  <a href="https://zeyuling.github.io/AnimateCanvas/#demo"><img src="https://zeyuling.github.io/AnimateCanvas/assets/cover.png" width="100%" alt="AnimateCanvas: compose kinematic cues, generate coherent full-body motion"></a>
 </p>
 
 <h2 align="center">Learning Implicit Motion Planning<br>from Composable Kinematic Cues</h2>
@@ -43,20 +43,19 @@ The formal release includes author credits, affiliations, and project links.
 
 <table>
 <tr>
-<td width="33%" align="center"><a href="https://zeyuling.github.io/AnimateCanvas/assets/showcase/route-v56.mp4"><img src="assets/route.webp" alt="Dense trajectory and local wrist cues" width="100%"></a><br><b>Trajectories + local cues</b></td>
-<td width="33%" align="center"><a href="https://zeyuling.github.io/AnimateCanvas/assets/showcase/footsteps-animatecanvas.mp4"><img src="assets/footsteps.webp" alt="Sparse foot positions and root heading" width="100%"></a><br><b>Sparse positions + heading</b></td>
-<td width="33%" align="center"><a href="https://zeyuling.github.io/AnimateCanvas/assets/showcase/jump-v56.mp4"><img src="assets/jump.webp" alt="Key poses and trajectory cues for a jump" width="100%"></a><br><b>Keyframes + trajectories</b></td>
+<td width="33%" align="center"><a href="https://zeyuling.github.io/AnimateCanvas/assets/showcase/route-v56.mp4"><img src="https://zeyuling.github.io/AnimateCanvas/assets/route.webp" alt="Dense trajectory and local wrist cues" width="100%"></a><br><b>Trajectories + local cues</b></td>
+<td width="33%" align="center"><a href="https://zeyuling.github.io/AnimateCanvas/assets/showcase/footsteps-animatecanvas.mp4"><img src="https://zeyuling.github.io/AnimateCanvas/assets/footsteps.webp" alt="Sparse foot positions and root heading" width="100%"></a><br><b>Sparse positions + heading</b></td>
+<td width="33%" align="center"><a href="https://zeyuling.github.io/AnimateCanvas/assets/showcase/jump-v56.mp4"><img src="https://zeyuling.github.io/AnimateCanvas/assets/jump.webp" alt="Key poses and trajectory cues for a jump" width="100%"></a><br><b>Keyframes + trajectories</b></td>
 </tr>
 <tr>
-<td align="center"><a href="https://zeyuling.github.io/AnimateCanvas/assets/showcase/editing-v56.mp4"><img src="assets/editing.webp" alt="Language-guided motion editing" width="100%"></a><br><b>Language-guided editing</b></td>
-<td align="center"><a href="https://zeyuling.github.io/AnimateCanvas/assets/showcase/boxing-v56.mp4"><img src="assets/boxing.webp" alt="Composed local controls for a strike" width="100%"></a><br><b>Composed local controls</b></td>
-<td align="center"><a href="https://zeyuling.github.io/AnimateCanvas/assets/showcase/basketball-animatecanvas.mp4"><img src="assets/basketball.webp" alt="A timed spatial cue for a dunk" width="100%"></a><br><b>Timed spatial targets</b></td>
+<td align="center"><a href="https://zeyuling.github.io/AnimateCanvas/assets/showcase/editing-v56.mp4"><img src="https://zeyuling.github.io/AnimateCanvas/assets/editing.webp" alt="Language-guided motion editing" width="100%"></a><br><b>Language-guided editing</b></td>
+<td align="center"><a href="https://zeyuling.github.io/AnimateCanvas/assets/showcase/boxing-v56.mp4"><img src="https://zeyuling.github.io/AnimateCanvas/assets/boxing.webp" alt="Composed local controls for a strike" width="100%"></a><br><b>Composed local controls</b></td>
+<td align="center"><a href="https://zeyuling.github.io/AnimateCanvas/assets/showcase/basketball-animatecanvas.mp4"><img src="https://zeyuling.github.io/AnimateCanvas/assets/basketball.webp" alt="A timed spatial cue for a dunk" width="100%"></a><br><b>Timed spatial targets</b></td>
 </tr>
 </table>
 
 [Full narrated demo](https://zeyuling.github.io/AnimateCanvas/#demo) ·
-[Benchmark gallery](https://zeyuling.github.io/AnimateCanvas/#benchmarks) ·
-[Media provenance](https://github.com/ZeyuLing/AnimateCanvas/blob/main/MEDIA.md)
+[Benchmark gallery](https://zeyuling.github.io/AnimateCanvas/#benchmarks)
 
 ## Quick start
 
@@ -121,12 +120,29 @@ Use `--task completion` for temporal completion. Editing additionally uses the
 input motion as context in the regions being regenerated. The CLI does not
 silently apply IK, resample motion, or retarget skeletons.
 
-[Canvas format and cue preparation](docs/canvas.md) ·
-[Motius integration and training](docs/motius.md)
+### Canvas format
+
+| Channels | Physical-space values |
+| --- | --- |
+| `0:3` | Root translation XYZ, meters |
+| `3:135` | 22 local joint rotations, six channels per joint |
+| `135:198` | 21 non-root joint positions relative to the pelvis, meters |
+
+Position axes retain world-axis orientation. World-space joint targets therefore
+require a consistent root translation. Position cues may select individual axes;
+each rotation cue must preserve all six channels together. Rotation-6D uses the
+first two matrix columns flattened in row-major order: identity is
+`[1, 0, 0, 1, 0, 0]`. Use the checkpoint's SMPL-22 joint order.
+
+For pose keyframes set `generation_mask[frame, :] = 0`. For editing, retain the
+original motion throughout the input and set mask entries to zero only where the
+motion must remain fixed; generated regions still provide editing context.
+
+[Full Motius documentation](https://github.com/ZeyuLing/Motius/blob/main/docs/model_zoo/motioncanvas.md)
 
 ## How it works
 
-<img src="assets/pipeline.png" width="100%" alt="Shared motion canvas, flow-matching model, and cue imputation">
+<img src="https://zeyuling.github.io/AnimateCanvas/assets/pipeline.png" width="100%" alt="Shared motion canvas, flow-matching model, and cue imputation">
 
 - **Compose:** place heterogeneous kinematic cues on one canvas across frames,
   joints, and position or rotation channels.
@@ -139,6 +155,12 @@ This package produces motion arrays, not rendered videos or character meshes.
 Root translation and local rotation cues are directly preserved. Non-root
 positions are decoded through forward kinematics, so exact canvas preservation
 does not imply exact decoded joint positions. Optional IK is a separate refinement.
+
+## Repository structure
+
+The `main` branch contains inference code. Website frontend and display assets
+live exclusively on [`gh-pages`](https://github.com/ZeyuLing/AnimateCanvas/tree/gh-pages).
+The project page remains at [zeyuling.github.io/AnimateCanvas](https://zeyuling.github.io/AnimateCanvas/).
 
 ## Motius integration
 
@@ -164,7 +186,7 @@ tests/            # real tiny-network inference, I/O and dependency checks
 | Spatial and composed control | `infer_kinematic_motion_control` |
 | Language-guided editing | `infer_motion_editing` |
 | Automatic repair (Motius) | `infer_motion_repair` |
-| Training | [Trainer and configuration](docs/motius.md) |
+| Training | [Motius trainer](https://github.com/ZeyuLing/Motius/tree/main/motius/trainers/motioncanvas) |
 | Sequential generation | [Motius model card and task documentation](https://github.com/ZeyuLing/Motius/blob/main/docs/model_zoo/motioncanvas.md) |
 
 Existing `MotionCanvas` / `motioncanvas` API identifiers and the checkpoint ID
@@ -191,10 +213,13 @@ python -m unittest discover -s tests -v
 Tests include actual CPU sampling with a tiny randomly initialized transformer,
 hard-cue preservation, FK decoding, checkpoint roundtrip, and NPZ output. They do
 not require public model downloads and are not a pretrained motion-quality test.
-See [validation](docs/validation.md) for the verified scope.
+Full generation with the public large checkpoint and pretrained text encoders has
+not yet been validated in this release environment.
 
 The original inference entry points, examples, and tests in this repository are released
-under the [MIT license](LICENSE). See [NOTICE](NOTICE.md) for its scope.
-Adapted implementation code retains its upstream provenance and applicable terms.
+under the [MIT license](LICENSE). The adapted bundle, pipeline, network and kinematics
+come from Motius revision `6d259de4672ff33c43a44d948fe8182f2c6eafb2`; their upstream
+provenance and applicable terms are retained. This MIT grant does not relicense
+upstream code or third-party assets.
 Checkpoints, training data, body models, and character meshes are not included.
 Rendered media does not grant redistribution rights to the underlying assets.
