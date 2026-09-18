@@ -11,9 +11,10 @@
 <p align="center"><sub>Zhejiang University · Tencent · Peking University · Sun Yat-sen University · Zhejiang Lab<br>* Corresponding author</sub></p>
 
 <p align="center">
-  <a href="assets/AnimateCanvas.pdf"><img src="https://img.shields.io/badge/Paper-PDF-B64B3A?style=flat-square" alt="Read the paper PDF"></a>
+  <a href="https://zeyuling.github.io/AnimateCanvas/assets/AnimateCanvas.pdf"><img src="https://img.shields.io/badge/Paper-PDF-B64B3A?style=flat-square" alt="Read the paper PDF"></a>
+  <a href="https://github.com/ZeyuLing/AnimateCanvas#quick-start"><img src="https://img.shields.io/badge/Code-GitHub-17242B?style=flat-square" alt="Code and quick start"></a>
   <a href="https://huggingface.co/ZeyuLing/Motius-MotionCanvas-0.46B"><img src="https://img.shields.io/badge/Hugging_Face-Model-E3AF35?style=flat-square" alt="Hugging Face model; availability noted below"></a>
-  <a href="https://zeyuling.github.io/AnimateCanvas/#demo"><img src="https://img.shields.io/badge/Watch-Demo-1F6F77?style=flat-square" alt="Watch the full demo"></a>
+  <a href="https://github.com/ZeyuLing/AnimateCanvas/releases/tag/animatecanvas-official-demo-20260918"><img src="https://img.shields.io/badge/Watch-Demo-1F6F77?style=flat-square" alt="Official credited demo editions"></a>
   <a href="https://zeyuling.github.io/AnimateCanvas/"><img src="https://img.shields.io/badge/Project-Homepage-274252?style=flat-square" alt="Project homepage"></a>
   <a href="https://github.com/ZeyuLing/Motius"><img src="https://img.shields.io/badge/Integrated_in-Motius-426D58?style=flat-square" alt="Full Motius integration"></a>
 </p>
