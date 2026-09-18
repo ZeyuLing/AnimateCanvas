@@ -142,5 +142,3 @@ class PositionalEncoding(nn.Module):
     def forward(self, x: Tensor) -> Tensor:
         x = x + self.pe[:, : x.shape[1], :]  # shape of [B, L, D]
         return self.dropout(x)
-
-

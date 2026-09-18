@@ -267,5 +267,3 @@ class HYTextModel(nn.Module):
         # Normalize embeddings
         vtxt_raw = nn.functional.normalize(sentence_embeddings, p=2, dim=1).unsqueeze(1)  # shape of [bs, 1, 768]
         return vtxt_raw
-
-

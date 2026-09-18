@@ -726,5 +726,3 @@ def repack_6d(d6: ArrayLike, src: str, dst: str) -> ArrayLike:
     )
     perm = _COL_TO_ROW if (src == "column" and dst == "row") else _ROW_TO_COL
     return d6[..., perm]
-
-

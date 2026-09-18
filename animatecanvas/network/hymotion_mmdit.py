@@ -1488,7 +1488,3 @@ class HunyuanMotionMMDiT(nn.Module):
             print(f"Total GFLOPs: {gflops['total']:.2f}G")
 
             return gflops
-
-
-
-

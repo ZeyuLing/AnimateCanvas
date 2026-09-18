@@ -941,6 +941,3 @@ class MotionCanvasPipeline(BasePipeline):
                     clean[batch_index, :length, channel],
                 )
         return clean, unanchored
-
-
-
