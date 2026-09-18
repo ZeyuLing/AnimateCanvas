@@ -29,9 +29,9 @@ network, training pipeline, cue sampler, inference, and evaluation interfaces li
 in Motius. This focused repository provides the paper, demos, documentation, and
 small runnable entry points using that same implementation, not a divergent model fork.
 
-> **Model availability:** the linked checkpoint is currently private; public access
-> is being enabled. Until then, inference requires authorized access or a compatible
-> local checkpoint. The legacy model identifier is retained for compatibility.
+> **Model weights are public:** download the checkpoint from
+> [Hugging Face](https://huggingface.co/ZeyuLing/Motius-MotionCanvas-0.46B).
+> The legacy model identifier is retained for Motius compatibility.
 
 ## See it in motion
 

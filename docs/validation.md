@@ -13,6 +13,5 @@ No model weights are bundled. Full checkpoint inference and CUDA performance hav
 not been validated in this release-preparation environment. Do not interpret unit
 test success as a new motion-quality benchmark or a tested hardware requirement.
 
-The linked Hub identifier is present in the Motius model card, but anonymous API
-access returned HTTP 401 on 2026-09-18. This can indicate a private or unavailable
-artifact. Public access must be checked after the authors finalize the model URL.
+Anonymous Hub API access was verified on 2026-09-18: the model repository is public
+and non-gated. This access check is separate from end-to-end inference validation.
