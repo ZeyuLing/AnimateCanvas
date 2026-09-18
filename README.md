@@ -1,102 +1,164 @@
 <p align="center">
-  <a href="https://zeyuling.github.io/AnimateCanvas/#demo"><img src="assets/readme/animatecanvas-cover.png" width="100%" alt="AnimateCanvas — Your cues. One coherent motion. Watch the complete demonstration." /></a>
+  <a href="https://zeyuling.github.io/AnimateCanvas/#demo"><img src="assets/cover.png" width="100%" alt="AnimateCanvas: compose kinematic cues, generate coherent full-body motion"></a>
 </p>
 
-<h3 align="center">Learning Implicit Motion Planning from Composable Kinematic Cues</h3>
+<h2 align="center">Learning Implicit Motion Planning<br>from Composable Kinematic Cues</h2>
 
 <p align="center">
-  <b><a href="https://zeyuling.github.io/AnimateCanvas/">Project page</a></b> &nbsp; / &nbsp;
-  <b><a href="https://zeyuling.github.io/AnimateCanvas/#demo">Full video</a></b> &nbsp; / &nbsp;
-  <b><a href="#benchmark-gallery">Benchmark gallery</a></b> &nbsp; / &nbsp;
-  <b><a href="#resources">Paper &amp; code</a></b> &nbsp; / &nbsp;
-  <b><a href="#hugging-face">Hugging Face</a></b>
+  Zeyu Ling · Di Kang · Qing Shuai · Yuxin Wen · Jing Li<br>
+  Zhanke Wang · Heng Li · Chunchao Guo · Changqing Zou* · Linchao Bao
+</p>
+<p align="center"><sub>Zhejiang University · Tencent · Peking University · Sun Yat-sen University · Zhejiang Lab<br>* Corresponding author</sub></p>
+
+<p align="center">
+  <a href="assets/AnimateCanvas.pdf"><img src="https://img.shields.io/badge/Paper-PDF-B64B3A?style=flat-square" alt="Read the paper PDF"></a>
+  <a href="https://huggingface.co/ZeyuLing/Motius-MotionCanvas-0.46B"><img src="https://img.shields.io/badge/Hugging_Face-Model-E3AF35?style=flat-square" alt="Hugging Face model; availability noted below"></a>
+  <a href="https://zeyuling.github.io/AnimateCanvas/#demo"><img src="https://img.shields.io/badge/Watch-Demo-1F6F77?style=flat-square" alt="Watch the full demo"></a>
+  <a href="https://zeyuling.github.io/AnimateCanvas/"><img src="https://img.shields.io/badge/Project-Homepage-274252?style=flat-square" alt="Project homepage"></a>
+  <a href="https://github.com/ZeyuLing/Motius"><img src="https://img.shields.io/badge/Integrated_in-Motius-426D58?style=flat-square" alt="Full Motius integration"></a>
 </p>
 
----
+**One motion canvas. Composable control.** AnimateCanvas generates full-body motion
+from position and rotation cues specified across joints and time, with optional
+language and input motion. One model supports temporal completion, spatial control,
+sequential generation, language-guided editing, and repair while retaining
+text-to-motion generation.
 
-**Compose kinematic cues. Generate coherent motion.** AnimateCanvas connects
-cue-prescribed partial states into a coherent full-body trajectory. A shared flow-matching
-model generates motion from position and rotation cues, with optional language and input
-motion for editing. Cue imputation preserves the specified canvas values throughout generation.
+**Fully integrated in [Motius](https://github.com/ZeyuLing/Motius).** The maintained
+network, training pipeline, cue sampler, inference, and evaluation interfaces live
+in Motius. This focused repository provides the paper, demos, documentation, and
+small runnable entry points using that same implementation, not a divergent model fork.
 
-## Watch AnimateCanvas
+> **Model availability:** the linked checkpoint is currently private; public access
+> is being enabled. Until then, inference requires authorized access or a compatible
+> local checkpoint. The legacy model identifier is retained for compatibility.
 
-The complete **2:38 narrated film** combines kinematic control, motion editing, and character
-animation. Explore individual scenes below, or watch it end to end.
+## See it in motion
 
-<p><b><a href="https://zeyuling.github.io/AnimateCanvas/#demo">▶ Full film with chapters</a></b> &nbsp; · &nbsp; <a href="https://zeyuling.github.io/AnimateCanvas/assets/media/animatecanvas-demo-1080p.mp4">1080p MP4</a> &nbsp; · &nbsp; <a href="https://github.com/ZeyuLing/AnimateCanvas/releases/download/animatecanvas-demo-20260913/animatecanvas-demo-1440p.mp4">1440p original</a></p>
+**[Official credited demo · 1440p / Chinese-captioned 1080p](https://github.com/ZeyuLing/AnimateCanvas/releases/tag/animatecanvas-official-demo-20260918)**
 
-<table>
-  <tr>
-    <td width="33%" align="center"><a href="https://zeyuling.github.io/AnimateCanvas/assets/showcase/route-v56.mp4"><img src="assets/showcase/route-v56.webp" alt="Routes &amp; local targets" width="100%" /></a><br /><b>Routes &amp; local targets</b></td>
-    <td width="33%" align="center"><a href="https://zeyuling.github.io/AnimateCanvas/assets/showcase/footsteps-animatecanvas.mp4"><img src="assets/showcase/footsteps-v56.webp" alt="Footsteps &amp; heading" width="100%" /></a><br /><b>Footsteps &amp; heading</b></td>
-    <td width="33%" align="center"><a href="https://zeyuling.github.io/AnimateCanvas/assets/showcase/jump-v56.mp4"><img src="assets/showcase/jump-v56.webp" alt="Key poses &amp; trajectories" width="100%" /></a><br /><b>Key poses &amp; trajectories</b></td>
-  </tr>
-  <tr>
-    <td width="33%" align="center"><a href="https://zeyuling.github.io/AnimateCanvas/assets/showcase/editing-v56.mp4"><img src="assets/showcase/editing-v56.webp" alt="Language-guided editing" width="100%" /></a><br /><b>Language-guided editing</b></td>
-    <td width="33%" align="center"><a href="https://zeyuling.github.io/AnimateCanvas/assets/showcase/boxing-v56.mp4"><img src="assets/showcase/boxing-v56.webp" alt="Composed hand controls" width="100%" /></a><br /><b>Composed hand controls</b></td>
-    <td width="33%" align="center"><a href="https://zeyuling.github.io/AnimateCanvas/assets/showcase/basketball-animatecanvas.mp4"><img src="assets/showcase/basketball-v56.webp" alt="Timed spatial targets" width="100%" /></a><br /><b>Timed spatial targets</b></td>
-  </tr>
-</table>
-
-## Benchmark gallery
-
-**24 AnimateCanvas inference cases — four per benchmark.** The six collections cover
-temporal control, body-part control, sequential generation, instruction editing,
-style–content editing, and text-to-motion.
-
-Each preview links to its full clip and source viewer. For edits, **input motion is on the left**
-and **AnimateCanvas is on the right**. Temporal previews distinguish supplied poses (amber) from generated motion (blue).
-The orange marker identifies the controlled wrist. [Color guide and complete previews →](https://zeyuling.github.io/AnimateCanvas/#benchmarks)
+The formal release includes author credits, affiliations, and project links.
 
 <table>
 <tr>
-<td width="50%" valign="top"><a href="https://zeyuling.github.io/AnimateCanvas/#case-prediction"><img src="assets/benchmarks/prediction.webp" width="100%" alt="Temporal control preview" /></a><br /><b>Temporal control</b><br /><a href="https://zeyuling.github.io/AnimateCanvas/?benchmark=temporal#benchmarks">Watch all 4 cases →</a></td>
-<td width="50%" valign="top"><a href="https://zeyuling.github.io/AnimateCanvas/#case-body-part-reach"><img src="assets/benchmarks/body-part-reach.webp" width="100%" alt="Body-part control preview" /></a><br /><b>Body-part control</b><br /><a href="https://zeyuling.github.io/AnimateCanvas/?benchmark=body#benchmarks">Watch all 4 cases →</a></td>
+<td width="33%" align="center"><a href="https://zeyuling.github.io/AnimateCanvas/assets/showcase/route-v56.mp4"><img src="assets/route.webp" alt="Dense trajectory and local wrist cues" width="100%"></a><br><b>Trajectories + local cues</b></td>
+<td width="33%" align="center"><a href="https://zeyuling.github.io/AnimateCanvas/assets/showcase/footsteps-animatecanvas.mp4"><img src="assets/footsteps.webp" alt="Sparse foot positions and root heading" width="100%"></a><br><b>Sparse positions + heading</b></td>
+<td width="33%" align="center"><a href="https://zeyuling.github.io/AnimateCanvas/assets/showcase/jump-v56.mp4"><img src="assets/jump.webp" alt="Key poses and trajectory cues for a jump" width="100%"></a><br><b>Keyframes + trajectories</b></td>
 </tr>
 <tr>
-<td width="50%" valign="top"><a href="https://zeyuling.github.io/AnimateCanvas/#case-sequential"><img src="assets/benchmarks/sequential.webp" width="100%" alt="Sequential generation preview" /></a><br /><b>Sequential generation</b><br /><a href="https://zeyuling.github.io/AnimateCanvas/?benchmark=sequential#benchmarks">Watch all 4 cases →</a></td>
-<td width="50%" valign="top"><a href="https://zeyuling.github.io/AnimateCanvas/#case-instruction"><img src="assets/benchmarks/instruction.webp" width="100%" alt="Instruction editing preview" /></a><br /><b>Instruction editing</b><br /><a href="https://zeyuling.github.io/AnimateCanvas/?benchmark=instruction#benchmarks">Watch all 4 cases →</a></td>
-</tr>
-<tr>
-<td width="50%" valign="top"><a href="https://zeyuling.github.io/AnimateCanvas/#case-style"><img src="assets/benchmarks/style.webp" width="100%" alt="Style–content editing preview" /></a><br /><b>Style–content editing</b><br /><a href="https://zeyuling.github.io/AnimateCanvas/?benchmark=editing#benchmarks">Watch all 4 cases →</a></td>
-<td width="50%" valign="top"><a href="https://zeyuling.github.io/AnimateCanvas/#case-text-to-motion"><img src="assets/benchmarks/text-to-motion.webp" width="100%" alt="Text-to-motion preview" /></a><br /><b>Text-to-motion</b><br /><a href="https://zeyuling.github.io/AnimateCanvas/?benchmark=text#benchmarks">Watch all 4 cases →</a></td>
+<td align="center"><a href="https://zeyuling.github.io/AnimateCanvas/assets/showcase/editing-v56.mp4"><img src="assets/editing.webp" alt="Language-guided motion editing" width="100%"></a><br><b>Language-guided editing</b></td>
+<td align="center"><a href="https://zeyuling.github.io/AnimateCanvas/assets/showcase/boxing-v56.mp4"><img src="assets/boxing.webp" alt="Composed local controls for a strike" width="100%"></a><br><b>Composed local controls</b></td>
+<td align="center"><a href="https://zeyuling.github.io/AnimateCanvas/assets/showcase/basketball-animatecanvas.mp4"><img src="assets/basketball.webp" alt="A timed spatial cue for a dunk" width="100%"></a><br><b>Timed spatial targets</b></td>
 </tr>
 </table>
 
-<p align="center"><b><a href="https://zeyuling.github.io/AnimateCanvas/#benchmarks">Browse all cases with task filters →</a></b></p>
+[Full narrated demo](https://zeyuling.github.io/AnimateCanvas/#demo) ·
+[Benchmark gallery](https://zeyuling.github.io/AnimateCanvas/#benchmarks) ·
+[Media provenance](https://github.com/ZeyuLing/AnimateCanvas/blob/main/MEDIA.md)
 
-## One canvas, coherent completion
+## Quick start
 
-<img src="assets/figures/animatecanvas-pipeline.png" alt="AnimateCanvas pipeline: compose kinematic cues on the canvas, predict motion with a shared MMDiT, preserve cue values through imputation, and train coherent completion with geometric and transition objectives." width="100%" />
+Use Python 3.10+ and a CUDA-capable PyTorch installation for practical inference.
+From this repository directory:
 
-- **Compose the cues.** Key poses, trajectories, local position and rotation targets share a
-  time–kinematic-variable canvas.
-- **Plan the motion.** One shared flow model connects cue-prescribed partial states into a
-  coherent full-body trajectory; cue imputation preserves specified canvas values.
-- **Edit in context.** Language and input motion support changes to an existing action.
+```bash
+python -m pip install -e .
+python examples/generate.py --checkpoint /path/to/checkpoint --local-files-only \
+  --task text --text "A person walks forward and waves." --frames 180 \
+  --output outputs/walking.npz
+```
 
-## Resources
+Once you have access to the Hub artifact, `--checkpoint` can also take
+`ZeyuLing/Motius-MotionCanvas-0.46B`; omit `--local-files-only` to permit downloading.
+The full artifact includes text encoders and is approximately 20 GB. Use
+`--cache-dir /path/to/large/cache` when necessary. Model access and licenses remain
+separate from installing this repository.
 
-| Resource | Status |
-| :--- | :--- |
-| Project page & video | [Explore AnimateCanvas](https://zeyuling.github.io/AnimateCanvas/) |
-| Paper & citation | Coming soon |
-| Training & inference code | Coming soon |
-| Hugging Face model | Coming soon |
-| Benchmark viewers | Available below |
+```python
+from animatecanvas import load_pipeline
 
-### Hugging Face
+pipe = load_pipeline("/path/to/checkpoint", local_files_only=True)
+result = pipe.infer_text_to_motion(
+    "A person turns left and continues walking", num_frames=180, seed=42
+)
+motion = result["motion_198"]
+```
 
-[Temporal control](https://huggingface.co/spaces/ZeyuLing/temporal-condition-leaderboard) ·
-[Body-part control](https://huggingface.co/spaces/ZeyuLing/body-part-condition-humanml3d-leaderboard) ·
-[Sequential generation](https://huggingface.co/spaces/ZeyuLing/babel-sequential-generation-leaderboard) ·
-[Instruction editing](https://huggingface.co/spaces/ZeyuLing/instruction-editing-leaderboard) ·
-[Style & content editing](https://huggingface.co/spaces/ZeyuLing/motion-edit-leaderboard) ·
-[Text-to-motion](https://huggingface.co/spaces/ZeyuLing/t2m-humanml3d-leaderboard)
+### Control, completion, and editing
 
-Follow this repository for the paper, model, and dedicated code release.
+Create an NPZ with `motion` and `generation_mask`, each shaped `(T, 198)` or
+`(B, T, 198)`. Use physical-space motion in **meters**, **30 fps**, at most
+**360 frames**. Mask value **0 preserves a cue**, and **1 generates a value**.
 
----
+```bash
+python examples/generate.py --checkpoint /path/to/checkpoint --local-files-only \
+  --task control --cues cues.npz --text "A person walks along the path." \
+  --output outputs/controlled.npz
 
-<sub>[Media provenance](assets/media-manifest.json) · [Media notes](MEDIA.md) · [Motius](https://github.com/ZeyuLing/Motius)</sub>
+python examples/generate.py --checkpoint /path/to/checkpoint --local-files-only \
+  --task edit --cues input_motion_and_mask.npz --text "Wave with the right hand." \
+  --output outputs/edited.npz
+```
+
+Use `--task completion` for temporal completion. Editing additionally uses the
+input motion as context in the regions being regenerated. The CLI does not
+silently apply IK, resample motion, or retarget skeletons.
+
+[Canvas format and cue preparation](docs/canvas.md) ·
+[Motius integration and training](docs/motius.md)
+
+## How it works
+
+<img src="assets/pipeline.png" width="100%" alt="Shared motion canvas, flow-matching model, and cue imputation">
+
+- **Compose:** place heterogeneous kinematic cues on one canvas across frames,
+  joints, and position or rotation channels.
+- **Generate:** use a shared flow-matching model with optional language and input motion.
+- **Preserve:** impute specified canvas values during training and sampling.
+
+Root translation and local rotation cues are directly preserved. Non-root
+positions are decoded through forward kinematics, so exact canvas preservation
+does not imply exact decoded joint positions. Optional IK is a separate refinement.
+
+## Motius integration
+
+| Capability | Maintained entry point |
+| --- | --- |
+| Text-to-motion | `infer_text_to_motion` |
+| Temporal completion | `infer_temporal_motion_completion` |
+| Spatial and composed control | `infer_kinematic_motion_control` |
+| Language-guided editing | `infer_motion_editing` |
+| Repair | `infer_motion_repair` |
+| Training | [Trainer and configuration](docs/motius.md) |
+| Sequential generation | [Motius model card and task documentation](https://github.com/ZeyuLing/Motius/blob/main/docs/model_zoo/motioncanvas.md) |
+
+Existing `MotionCanvas` / `motioncanvas` API identifiers and the checkpoint ID
+are retained for compatibility; the paper and public project name is **AnimateCanvas**.
+
+## Citation
+
+```bibtex
+@misc{ling2026animatecanvas,
+  title={AnimateCanvas: Learning Implicit Motion Planning from Composable Kinematic Cues},
+  author={Zeyu Ling and Di Kang and Qing Shuai and Yuxin Wen and Jing Li and Zhanke Wang and Heng Li and Chunchao Guo and Changqing Zou and Linchao Bao},
+  year={2026}
+}
+```
+
+The arXiv identifier will be added once the submission has been announced.
+
+## Testing and licenses
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+These tests check canvas input validation and NPZ output without model downloads.
+They are not an end-to-end inference benchmark. See [validation](docs/validation.md)
+for the scope of these checks.
+
+The original Python adapter, examples, and tests in this repository are released
+under the [MIT license](LICENSE). See [NOTICE](NOTICE.md) for its scope.
+Motius and its dependencies retain their applicable terms.
+Checkpoints, training data, body models, and character meshes are not included.
+Rendered media does not grant redistribution rights to the underlying assets.

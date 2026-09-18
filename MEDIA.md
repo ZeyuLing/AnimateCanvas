@@ -1,5 +1,17 @@
 # Media notes
 
+## Official credited edition — September 18, 2026
+
+The [formal release](https://github.com/ZeyuLing/AnimateCanvas/releases/tag/animatecanvas-official-demo-20260918)
+adds the final author list and affiliations to the opening and appends a nine-second
+project/Motius end card. The original motion demonstrations and chapter timing are
+retained. It provides a 2560×1440 English master and a 1920×1080 Chinese-captioned
+edition, both 30 fps and 2:47 long. These large videos are release assets, not code
+repository blobs. The embedded lightweight 2:38 website player remains the earlier
+edition; its adjacent link leads to the new credited editions.
+
+## Existing website demonstrations
+
 The current release is **AnimateCanvas**. The September 13 branding update
 renames the opening, burned-in captions, three English voice takes, README cover,
 and editing-preview labels. The accepted V56 motion, camera, scene timing,

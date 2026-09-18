@@ -73,14 +73,14 @@
               class="button button-secondary"
               href="#release"
             >
-              Model · coming soon <span aria-hidden="true">↗</span>
+              Paper · code · model <span aria-hidden="true">↗</span>
             </a>
           </div>
 
           <div class="release-status" aria-label="Release status">
-            <span><b>Paper</b> Coming soon</span>
-            <span><b>Code</b> Coming soon</span>
-            <span class="status-live"><b>Model</b> Coming soon</span>
+            <span><b>Paper</b> Available</span>
+            <span><b>Code</b> Motius integration</span>
+            <span><b>Model</b> Public access pending</span>
           </div>
 
         </div>
@@ -148,7 +148,7 @@
           <p class="media-error" hidden role="status">The video could not load. Please retry or use the download links below.</p>
           <div class="video-caption">
             <span>02:38 · 30 fps · English narration &amp; captions</span>
-            <div><a href="assets/media/animatecanvas-demo-1080p.mp4" download>1080p MP4</a><a href="https://github.com/ZeyuLing/AnimateCanvas/releases/download/animatecanvas-demo-20260913/animatecanvas-demo-1440p.mp4">1440p original ↗</a></div>
+            <div><a href="assets/media/animatecanvas-demo-1080p.mp4" download>1080p MP4</a><a href="https://github.com/ZeyuLing/AnimateCanvas/releases/tag/animatecanvas-official-demo-20260918">Official credited editions ↗</a></div>
           </div>
         </div>
       <nav class="chapter-list" aria-label="Video chapters"><button type="button" data-seek="0"><span>00:00</span>Method</button><button type="button" data-seek="26.5"><span>00:27</span>Route &amp; local cues</button><button type="button" data-seek="48.6"><span>00:49</span>Footsteps &amp; heading</button><button type="button" data-seek="68.87"><span>01:09</span>Pose &amp; trajectory</button><button type="button" data-seek="84.57"><span>01:25</span>Editing</button><button type="button" data-seek="118.2"><span>01:58</span>Composed cues</button><button type="button" data-seek="144.73"><span>02:25</span>Timed hoop target</button></nav><details class="transcript"><summary>Read the narration transcript</summary><div><p>Creating character animation takes more than a text prompt. Artists sketch routes, place poses, direct body parts, and preserve existing motion. AnimateCanvas represents position and rotation cues on a shared motion canvas. A shared flow model coordinates the motion. Cue imputation preserves the specified canvas values throughout generation.</p><p>A dense route specifies where to travel. A local wrist cue controls one body part without specifying the rest of the motion. Sparse foot targets and root-heading constraints leave the transitions open. AnimateCanvas connects them with a continuous, coordinated gait. Position and rotation cues can be combined across body parts and time within a single motion. A few pose and trajectory cues shape the jump, while the model completes its timing and whole-body coordination.</p><p>An existing motion can also serve as editing context. Here, the original motion provides editing context, while language changes the gesture to wave the right hand. The edited motion follows the instruction while maintaining a coherent surrounding action. Compatible cues share the same motion canvas, so one generator can complete motion under their combined constraints.</p><p>Local targets guide the strike, while the model coordinates stance, timing, and recovery. This is cue-conditioned implicit motion planning: connecting the partial states prescribed by cues into one coherent full-body trajectory. Here, we provide the hoop position at the dunk time. AnimateCanvas plans the full motion around it. Thank you for watching.</p><p>Goodbye.</p></div></details></section>
@@ -429,21 +429,21 @@
           <div class="release-heading">
             <p class="section-kicker">Release</p>
             <h2 id="release-title">Follow the project.</h2>
-            <p>Explore the public benchmark viewers now. The paper, model link, and dedicated training/inference code release will follow.</p>
+            <p>Read the paper, run the Motius-backed entry points, and explore the benchmark viewers. Public checkpoint access is being enabled.</p>
           </div>
 
           <div class="release-links">
-            <div class="release-link release-link-muted" aria-label="Paper coming soon">
+            <a class="release-link" href="assets/AnimateCanvas.pdf">
               <span>Paper</span>
-              <b>Coming soon</b>
-              <small>PDF · arXiv</small>
-            </div>
-            <div class="release-link release-link-muted" aria-label="Code coming soon">
+              <b>Read the paper</b>
+              <small>Full paper · PDF</small>
+            </a>
+            <a class="release-link" href="https://github.com/ZeyuLing/AnimateCanvas#quick-start">
               <span>Code</span>
-              <b>Coming soon</b>
-              <small>Training · inference</small>
-            </div>
-            <div class="release-link release-link-muted"><span>Hugging Face</span><b>Model weights · coming soon</b><small>The download link will appear here</small></div>
+              <b>Get started</b>
+              <small>Code · full Motius integration</small>
+            </a>
+            <a class="release-link" href="https://huggingface.co/ZeyuLing/Motius-MotionCanvas-0.46B"><span>Hugging Face</span><b>Model weights</b><small>Public access pending</small></a>
             <a
               class="release-link"
               href="https://huggingface.co/spaces/ZeyuLing/temporal-condition-leaderboard"

@@ -2,6 +2,12 @@ _qa*
 node_modules/
 .DS_Store
 Thumbs.db
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+dist/
+build/
 # Superseded local draft media, retained locally but not published.
 assets/results/
 assets/media/motioncanvas-full-demo-1080p.mp4
