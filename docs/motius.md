@@ -1,26 +1,33 @@
-# Maintained implementation in Motius
+# Standalone inference and Motius integration
 
-AnimateCanvas is fully integrated in [Motius](https://github.com/ZeyuLing/Motius).
-This repository's loader calls the existing bundle and pipeline directly. It
-does not wrap a remote inference service or download an executable model script.
-Use only trusted checkpoints.
+AnimateCanvas contains its own inference implementation and has **no Motius
+installation dependency**. Core sources were extracted from public Motius revision
+`6d259de4672ff33c43a44d948fe8182f2c6eafb2`, preserving transformer parameter names and
+the published checkpoint format.
 
-The installation pins the public Motius commit
-`6d259de4672ff33c43a44d948fe8182f2c6eafb2` for a reproducible integration snapshot.
-The following links expose the actual maintained source, not copied excerpts:
+## Included here
 
-- [Model and bundle](https://github.com/ZeyuLing/Motius/tree/6d259de4672ff33c43a44d948fe8182f2c6eafb2/motius/models/motioncanvas)
-- [Inference pipeline](https://github.com/ZeyuLing/Motius/tree/6d259de4672ff33c43a44d948fe8182f2c6eafb2/motius/pipelines/motioncanvas)
-- [Training implementation](https://github.com/ZeyuLing/Motius/tree/6d259de4672ff33c43a44d948fe8182f2c6eafb2/motius/trainers/motioncanvas)
-- [Compositional cue sampler](https://github.com/ZeyuLing/Motius/blob/6d259de4672ff33c43a44d948fe8182f2c6eafb2/motius/datasets/motion/motionhub/transforms/condition_sampler.py)
+- `animatecanvas/network/`: MMDiT backbone, attention, embeddings and text encoding.
+- `animatecanvas/bundle.py`: Hub/local loading, normalization and motion decoding.
+- `animatecanvas/pipeline.py`: sampling, classifier-free guidance and cue imputation.
+- `animatecanvas/kinematics/`: rotation conversions and skeleton forward kinematics.
+- `examples/`: text generation, completion, control, editing and keyframe preparation.
+
+The registry, trainer, dataset framework, unrelated models and demo production tools
+are not included. Training-only loss and freezing settings in existing checkpoint
+metadata are accepted for compatibility but do not execute a training framework.
+Skeleton decoding uses the checkpoint's own `bone_offsets_22.pt`; proprietary mesh
+or body assets are not required.
+
+## Full Motius implementation
+
+For automatic repair, extra IK projection, training, evaluation, sequential workflows,
+visualization and character export, use [Motius](https://github.com/ZeyuLing/Motius):
+
+- [Model documentation](https://github.com/ZeyuLing/Motius/blob/main/docs/model_zoo/motioncanvas.md)
+- [Trainer](https://github.com/ZeyuLing/Motius/tree/6d259de4672ff33c43a44d948fe8182f2c6eafb2/motius/trainers/motioncanvas)
 - [Training configuration](https://github.com/ZeyuLing/Motius/blob/6d259de4672ff33c43a44d948fe8182f2c6eafb2/configs/motioncanvas/train_motioncanvas_0p46b.py)
-- [Model card and advanced usage](https://github.com/ZeyuLing/Motius/blob/main/docs/model_zoo/motioncanvas.md)
 
-For full training, evaluation, motion repair, sequential generation, visualization,
-and character export, use the Motius checkout and its task documentation. Dataset
-access, pretrained text encoders, body-model assets, and machine-specific paths
-must be configured separately. A training configuration is not a redistribution
-of the training corpus.
-
-The legacy `motioncanvas` package names and artifact identifiers intentionally
-remain unchanged. Renaming files inside a downloaded checkpoint can break loading.
+The public Hub ID and internal `MotionCanvas` class names are retained for checkpoint
+compatibility. Neither repository distributes the training corpus or third-party
+character/body assets.

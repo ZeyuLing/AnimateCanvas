@@ -4,11 +4,16 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "animatecanvas"
-version = "0.1.0"
+version = "0.2.0"
 description = "AnimateCanvas: composable kinematic cues for motion generation and control"
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = ["numpy>=1.24", "motius[motioncanvas] @ git+https://github.com/ZeyuLing/Motius.git@6d259de4672ff33c43a44d948fe8182f2c6eafb2"]
+dependencies = [
+    "numpy>=1.24,<3", "torch>=2.6", "einops>=0.6",
+    "transformers>=4.51,<5", "huggingface_hub>=0.34,<1",
+    "safetensors>=0.4", "scipy>=1.9", "torchdiffeq>=0.2",
+    "sentencepiece>=0.1.99",
+]
 
 [tool.setuptools.packages.find]
 include = ["animatecanvas*"]

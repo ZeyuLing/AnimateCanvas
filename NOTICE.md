@@ -1,10 +1,14 @@
 # License scope
 
-The MIT license in this repository covers the original integration code in
-`animatecanvas/`, examples in `examples/`, and tests in `tests/`.
+The MIT license covers the original entry points (`animatecanvas/__init__.py`,
+`animatecanvas/io.py`, `animatecanvas/base.py`), examples and tests.
 
-Motius is a separately maintained dependency and retains its own applicable
-licenses. This license does not relicense Motius, model checkpoints, third-party
+Inference implementation in `animatecanvas/bundle.py`, `animatecanvas/pipeline.py`,
+`animatecanvas/network/` and `animatecanvas/kinematics/` is adapted from the author's
+public Motius revision `6d259de4672ff33c43a44d948fe8182f2c6eafb2` (2026-09-18 extraction).
+Upstream names and notices are retained for attribution and checkpoint compatibility.
+Motius is not an installation dependency. This MIT grant does not independently
+relicense upstream implementation code, model checkpoints, third-party
 libraries, datasets, SMPL-family body models, character meshes, or motion assets.
 Consult their respective distributions before use or redistribution.
 

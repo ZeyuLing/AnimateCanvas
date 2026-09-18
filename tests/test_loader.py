@@ -5,8 +5,8 @@ from animatecanvas import load_pipeline
 
 class LoaderTests(unittest.TestCase):
     def test_load_delegates_without_changing_checkpoint(self):
-        model = types.ModuleType("motius.models.motioncanvas")
-        pipes = types.ModuleType("motius.pipelines.motioncanvas")
+        model = types.ModuleType("animatecanvas.bundle")
+        pipes = types.ModuleType("animatecanvas.pipeline")
         bundle = Mock(); model.MotionCanvasBundle = Mock()
         model.MotionCanvasBundle.from_pretrained.return_value = bundle
         pipes.MotionCanvasPipeline = Mock()

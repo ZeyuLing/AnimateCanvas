@@ -25,10 +25,11 @@ language and input motion. One model supports temporal completion, spatial contr
 sequential generation, language-guided editing, and repair while retaining
 text-to-motion generation.
 
-**Fully integrated in [Motius](https://github.com/ZeyuLing/Motius).** The maintained
-network, training pipeline, cue sampler, inference, and evaluation interfaces live
-in Motius. This focused repository provides the paper, demos, documentation, and
-small runnable entry points using that same implementation, not a divergent model fork.
+**Standalone inference, fully integrated in [Motius](https://github.com/ZeyuLing/Motius).**
+This repository includes the motion transformer, text encoder interface, checkpoint
+loader, flow sampler, cue imputation, and skeleton decoding. **Installing Motius is
+not required.** For training, automatic repair, optional IK refinement, evaluation,
+and the wider motion-tool ecosystem, use the full Motius integration.
 
 > **Model weights are public:** download the checkpoint from
 > [Hugging Face](https://huggingface.co/ZeyuLing/Motius-MotionCanvas-0.46B).
@@ -59,26 +60,32 @@ The formal release includes author credits, affiliations, and project links.
 
 ## Quick start
 
-Use Python 3.10+ and a CUDA-capable PyTorch installation for practical inference.
-From this repository directory:
+Use Python 3.10+ and install a CUDA-compatible PyTorch build for GPU inference.
+The model uses CLIP and Qwen3 text encoders; allow approximately 20 GB of disk
+space for the complete download. The text encoder is loaded lazily and currently
+runs on CPU, so substantial system RAM is also required. GPU memory requirements
+for the full public checkpoint have not yet been benchmarked in this release.
 
 ```bash
+git clone https://github.com/ZeyuLing/AnimateCanvas.git
+cd AnimateCanvas
 python -m pip install -e .
-python examples/generate.py --checkpoint /path/to/checkpoint --local-files-only \
-  --task text --text "A person walks forward and waves." --frames 180 \
+python examples/generate.py --task text \
+  --text "A person walks forward and waves." --frames 180 \
   --output outputs/walking.npz
 ```
 
-Once you have access to the Hub artifact, `--checkpoint` can also take
-`ZeyuLing/Motius-MotionCanvas-0.46B`; omit `--local-files-only` to permit downloading.
-The full artifact includes text encoders and is approximately 20 GB. Use
-`--cache-dir /path/to/large/cache` when necessary. Model access and licenses remain
-separate from installing this repository.
+The default checkpoint is `ZeyuLing/Motius-MotionCanvas-0.46B` and is downloaded
+automatically. Use `--cache-dir /path/to/large/cache` to choose its cache, or
+`--checkpoint /path/to/checkpoint --local-files-only` for offline loading. Install
+PyTorch for your hardware before installing this package; a CPU-only installation
+cannot run the default `--device cuda`. `--device cpu` is available but full-model
+CPU generation is not a practical performance recommendation.
 
 ```python
 from animatecanvas import load_pipeline
 
-pipe = load_pipeline("/path/to/checkpoint", local_files_only=True)
+pipe = load_pipeline()  # public checkpoint, CUDA by default
 result = pipe.infer_text_to_motion(
     "A person turns left and continues walking", num_frames=180, seed=42
 )
@@ -86,6 +93,15 @@ motion = result["motion_198"]
 ```
 
 ### Control, completion, and editing
+
+Start with a generated motion and preserve selected frames as pose cues:
+
+```bash
+python examples/make_keyframe_cues.py --source outputs/walking.npz \
+  --frames 0 60 120 179 --output outputs/keyframes.npz
+python examples/generate.py --task completion --cues outputs/keyframes.npz \
+  --text "A person walks forward and waves." --output outputs/completed.npz
+```
 
 Create an NPZ with `motion` and `generation_mask`, each shaped `(T, 198)` or
 `(B, T, 198)`. Use physical-space motion in **meters**, **30 fps**, at most
@@ -117,11 +133,29 @@ silently apply IK, resample motion, or retarget skeletons.
 - **Generate:** use a shared flow-matching model with optional language and input motion.
 - **Preserve:** impute specified canvas values during training and sampling.
 
+Outputs include `motion_198`, `rot6d`, `transl`, and FK-decoded `keypoints3d`.
+This package produces motion arrays, not rendered videos or character meshes.
+
 Root translation and local rotation cues are directly preserved. Non-root
 positions are decoded through forward kinematics, so exact canvas preservation
 does not imply exact decoded joint positions. Optional IK is a separate refinement.
 
 ## Motius integration
+
+### In this repository
+
+```text
+animatecanvas/
+  bundle.py       # checkpoint loading, text conditioning, normalization, decode
+  pipeline.py     # flow sampling and cue imputation
+  network/        # motion transformer, attention, text encoder interface
+  kinematics/     # rotation conversions and skeleton FK
+  io.py           # canvas NPZ validation and motion output
+examples/         # generation CLI and keyframe cue preparation
+tests/            # real tiny-network inference, I/O and dependency checks
+```
+
+### Full ecosystem
 
 | Capability | Maintained entry point |
 | --- | --- |
@@ -129,7 +163,7 @@ does not imply exact decoded joint positions. Optional IK is a separate refineme
 | Temporal completion | `infer_temporal_motion_completion` |
 | Spatial and composed control | `infer_kinematic_motion_control` |
 | Language-guided editing | `infer_motion_editing` |
-| Repair | `infer_motion_repair` |
+| Automatic repair (Motius) | `infer_motion_repair` |
 | Training | [Trainer and configuration](docs/motius.md) |
 | Sequential generation | [Motius model card and task documentation](https://github.com/ZeyuLing/Motius/blob/main/docs/model_zoo/motioncanvas.md) |
 
@@ -154,12 +188,13 @@ The arXiv identifier will be added once the submission has been announced.
 python -m unittest discover -s tests -v
 ```
 
-These tests check canvas input validation and NPZ output without model downloads.
-They are not an end-to-end inference benchmark. See [validation](docs/validation.md)
-for the scope of these checks.
+Tests include actual CPU sampling with a tiny randomly initialized transformer,
+hard-cue preservation, FK decoding, checkpoint roundtrip, and NPZ output. They do
+not require public model downloads and are not a pretrained motion-quality test.
+See [validation](docs/validation.md) for the verified scope.
 
-The original Python adapter, examples, and tests in this repository are released
+The original inference entry points, examples, and tests in this repository are released
 under the [MIT license](LICENSE). See [NOTICE](NOTICE.md) for its scope.
-Motius and its dependencies retain their applicable terms.
+Adapted implementation code retains its upstream provenance and applicable terms.
 Checkpoints, training data, body models, and character meshes are not included.
 Rendered media does not grant redistribution rights to the underlying assets.
